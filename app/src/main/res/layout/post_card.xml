@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/padding_post_card"
+    android:layout_margin="@dimen/margin_post_card"
+    android:background="@color/colorGrey">
+
+    <ImageView
+        android:id="@+id/imageViewPost"
+        android:layout_width="@dimen/user_image_size"
+        android:layout_height="@dimen/user_image_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/ic_image" />
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_post_card"
+        android:textSize="@dimen/title_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewPost"
+        app:layout_constraintTop_toTopOf="@+id/imageViewPost"
+        tools:text="@string/title" />
+
+    <TextView
+        android:id="@+id/textViewDetailed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_post_card"
+        android:layout_marginTop="@dimen/margin_post_card"
+        android:textSize="@dimen/snippet_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewPost"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+        tools:text="@string/detailed_text" />
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_post_card"
+        android:layout_marginTop="@dimen/margin_post_card"
+        android:textSize="@dimen/snippet_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewPost"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDetailed"
+        tools:text="@string/data" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

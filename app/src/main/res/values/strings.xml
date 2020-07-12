@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Dev Exam</string>
+    <string name="phone_mask_fail">Can\'t get phone mask from server</string>
+    <string name="server_connection_fail">Connection to server failed</string>
+    <string name="phone_password_empty">Phone or password field is empty</string>
+    <string name="phone_number">Phone number</string>
+    <string name="digits">+ 1234567890-</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="authentication_failed">Authentication is not successful, try else</string>
+    <string name="server_sort">Server sort</string>
+    <string name="by_date_sort">By date sort</string>
+    <string name="title">Title</string>
+    <string name="detailed_text">Detailed text</string>
+    <string name="data">Data</string>
+    <string name="loading_posts_failed">Loading posts failed, try else</string>
+</resources>

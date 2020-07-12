@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_main">24dp</dimen>
+    <dimen name="margin_top">20dp</dimen>
+    <dimen name="elevation">4dp</dimen>
+    <dimen name="padding_post_card">16dp</dimen>
+    <dimen name="margin_post_card">5dp</dimen>
+    <dimen name="user_image_size">96dp</dimen>
+    <dimen name="title_size">18sp</dimen>
+    <dimen name="snippet_size">14sp</dimen>
+</resources>
