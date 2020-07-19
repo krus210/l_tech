@@ -17,4 +17,5 @@ interface APIMain {
         @Query("password") password: String,
         @Header("Content-Type") contentType: String = "application/x-www-form-urlencoded"
     ): Response<AuthResult>
+
 }

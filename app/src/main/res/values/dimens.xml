@@ -8,4 +8,5 @@
     <dimen name="user_image_size">96dp</dimen>
     <dimen name="title_size">18sp</dimen>
     <dimen name="snippet_size">14sp</dimen>
+    <dimen name="small_snippet_size">8sp</dimen>
 </resources>

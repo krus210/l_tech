@@ -8,6 +8,12 @@ import ru.korolevss.l_tech.model.Post
 
 class PostAdapter(val list: MutableList<Post>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    var viewClickListener: OnViewClickListener? = null
+
+    interface OnViewClickListener {
+        fun onViewClicked(post: Post)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater
             .from(parent.context)
