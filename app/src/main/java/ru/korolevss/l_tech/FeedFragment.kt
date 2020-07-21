@@ -27,12 +27,6 @@ class FeedFragment : Fragment(), FeedContract.View, PostAdapter.OnViewClickListe
         FeedPresenter(this)
     }
 
-    private companion object {
-        const val IMAGE ="IMAGE"
-        const val TITLE ="TITLE"
-        const val TEXT ="TEXT"
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -69,12 +63,7 @@ class FeedFragment : Fragment(), FeedContract.View, PostAdapter.OnViewClickListe
     }
 
     override fun onViewClicked(post: Post) {
-        val bundle = Bundle()
-        bundle.putString(IMAGE, post.image)
-        bundle.putString(TITLE, post.title)
-        bundle.putString(TEXT, post.text)
-        val postFragment = PostFragment()
-        postFragment.arguments = bundle
+        val postFragment = PostFragment.newInstance(post.image, post.title, post.text)
         val transaction = fragmentManager?.beginTransaction()
         if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
             transaction?.replace(R.id.activity_container, postFragment)

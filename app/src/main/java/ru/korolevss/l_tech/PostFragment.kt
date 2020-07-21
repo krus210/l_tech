@@ -1,34 +1,30 @@
 package ru.korolevss.l_tech
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.bitmap_recycle.IntegerArrayAdapter
 import kotlinx.android.synthetic.main.fragment_post.*
 
+private const val IMAGE = "IMAGE"
+private const val TITLE = "TITLE"
+private const val TEXT = "TEXT"
 
 class PostFragment : Fragment() {
 
-    private companion object {
-        const val IMAGE = "IMAGE"
-        const val TITLE = "TITLE"
-        const val TEXT = "TEXT"
-        private var image = ""
-        private var title = ""
-        private var detailedText = ""
-    }
+    private var image: String? = null
+    private var title: String? = null
+    private var detailedText: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val bundle = this.arguments
-        image = bundle?.getString(IMAGE) ?: ""
-        title = bundle?.getString(TITLE) ?: ""
-        detailedText = bundle?.getString(TEXT) ?: ""
+        image = arguments?.getString(IMAGE) ?: ""
+        title = arguments?.getString(TITLE) ?: ""
+        detailedText = arguments?.getString(TEXT) ?: ""
     }
 
     override fun onCreateView(
@@ -42,7 +38,7 @@ class PostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (image.isNotEmpty()) {
+        if (!image.isNullOrEmpty()) {
             Glide.with(this)
                 .load(image)
                 .placeholder(R.drawable.ic_image)
@@ -52,11 +48,24 @@ class PostFragment : Fragment() {
                 .into(imageViewPostItem)
         }
 
-        if (title.isNotEmpty()) {
+        if (!title.isNullOrEmpty()) {
             textViewTitlePostItem.text = title
             activity?.title = title
         }
 
-        textViewDetailedPostItem.text = detailedText
+        textViewDetailedPostItem.text = detailedText ?: ""
     }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(image: String, title: String, detailedText: String) =
+            PostFragment().apply {
+                arguments = Bundle().apply {
+                    putString(IMAGE, image)
+                    putString(TITLE, title)
+                    putString(TEXT, detailedText)
+                }
+            }
+    }
+
 }
