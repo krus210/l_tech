@@ -1,5 +1,6 @@
 package ru.korolevss.l_tech
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.KeyEvent
@@ -31,6 +32,7 @@ class FeedFragment : Fragment(), FeedContract.View, PostAdapter.OnViewClickListe
         const val IMAGE ="IMAGE"
         const val TITLE ="TITLE"
         const val TEXT ="TEXT"
+        const val POST_ACTIVITY = 100
     }
 
     override fun onCreateView(
@@ -69,17 +71,20 @@ class FeedFragment : Fragment(), FeedContract.View, PostAdapter.OnViewClickListe
     }
 
     override fun onViewClicked(post: Post) {
-        val bundle = Bundle()
-        bundle.putString(IMAGE, post.image)
-        bundle.putString(TITLE, post.title)
-        bundle.putString(TEXT, post.text)
-        val postFragment = PostFragment()
-        postFragment.arguments = bundle
         val transaction = fragmentManager?.beginTransaction()
         if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            transaction?.replace(R.id.activity_container, postFragment)
-            transaction?.addToBackStack(null)
+            val intent = Intent(context, PostActivity::class.java)
+            intent.putExtra(IMAGE, post.image)
+            intent.putExtra(TITLE, post.title)
+            intent.putExtra(TEXT, post.text)
+            activity?.startActivityForResult(intent, POST_ACTIVITY)
         } else if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            val bundle = Bundle()
+            bundle.putString(IMAGE, post.image)
+            bundle.putString(TITLE, post.title)
+            bundle.putString(TEXT, post.text)
+            val postFragment = PostFragment()
+            postFragment.arguments = bundle
             val oldFragment = fragmentManager?.findFragmentById(R.id.posts_container)
             if (oldFragment != null) {
                 transaction?.remove(oldFragment)
@@ -142,11 +147,4 @@ class FeedFragment : Fragment(), FeedContract.View, PostAdapter.OnViewClickListe
     override suspend fun showText(message: Int) {
         Toast.makeText(context, getString(message), Toast.LENGTH_SHORT).show()
     }
-
-    override fun onStart() {
-        super.onStart()
-        activity?.title = getString(R.string.app_name)
-    }
-
-
 }

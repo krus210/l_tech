@@ -1,14 +1,13 @@
 package ru.korolevss.l_tech
 
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.bitmap_recycle.IntegerArrayAdapter
 import kotlinx.android.synthetic.main.fragment_post.*
 
 
@@ -25,10 +24,16 @@ class PostFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val bundle = this.arguments
-        image = bundle?.getString(IMAGE) ?: ""
-        title = bundle?.getString(TITLE) ?: ""
-        detailedText = bundle?.getString(TEXT) ?: ""
+        arguments?.let {
+            image = it.getString(IMAGE) ?: ""
+            title = it.getString(TITLE) ?: ""
+            detailedText = it.getString(TEXT) ?: ""
+        }
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            image = activity?.intent?.getStringExtra(IMAGE) ?: ""
+            title = activity?.intent?.getStringExtra(TITLE) ?: ""
+            detailedText = activity?.intent?.getStringExtra(TEXT) ?: ""
+        }
     }
 
     override fun onCreateView(
@@ -59,4 +64,5 @@ class PostFragment : Fragment() {
 
         textViewDetailedPostItem.text = detailedText
     }
+
 }
