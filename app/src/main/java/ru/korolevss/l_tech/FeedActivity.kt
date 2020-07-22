@@ -52,7 +52,7 @@ class FeedActivity : AppCompatActivity() {
             if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 val newPostFragment = recreateFragment(oldFragment)
                 fragmentTransaction.add(R.id.posts_container, newPostFragment)
-                fragmentTransaction.replace(R.id.activity_container, FeedFragment())
+//                fragmentTransaction.add(R.id.activity_container, FeedFragment())
                 fragmentTransaction.commit()
                 supportFragmentManager.popBackStack()
             }
